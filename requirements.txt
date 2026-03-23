@@ -1,7 +1,7 @@
-streamlit==1.37.1
-openai==1.60.2
+streamlit
 google-generativeai
-requests==2.32.3
-beautifulsoup4==4.12.3
 playwright
-Pillow
+playwright-stealth
+beautifulsoup4
+requests
+pandas
