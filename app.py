@@ -1,24 +1,18 @@
 import os
 import streamlit as st
-import subprocess
 
-# 🚀 自动安装 Playwright 浏览器内核的“终极补丁”
-# 在云端服务器启动时只运行一次
+# 🚀 云端专用 Playwright 启动补丁
 if 'PLAYWRIGHT_INSTALLED' not in st.session_state:
-    with st.spinner("Installing browser dependencies... This may take a minute."):
-        try:
-            # 安装 chromium 及其必要的系统依赖
-            subprocess.run(["playwright", "install", "chromium", "--with-deps"], check=True)
-            st.session_state['PLAYWRIGHT_INSTALLED'] = True
-        except Exception as e:
-            st.error(f"Playwright installation failed: {e}")
+    # 删掉了 --with-deps，因为依赖已经写在 packages.txt 里由系统装好了
+    os.system("playwright install chromium")
+    st.session_state['PLAYWRIGHT_INSTALLED'] = True
 
-# 核心导入（只需一套）
+# 接下来的导入
 import pandas as pd
 from vibeggeo.geoprocess import fetch_input_content, optimize_content
 
-# 设置页面配置（必须在所有 st 命令之前）
-st.set_page_config(page_title="VibeGEO - Generative Engine Optimizer", layout="wide")
+st.set_page_config(page_title="VibeGEO", layout="wide")
+
 def _render_metrics(result):
     """渲染 GEO 指标看板"""
     st.markdown("---")
