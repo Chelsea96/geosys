@@ -13,6 +13,8 @@ from vibeggeo.geoprocess import fetch_input_content, optimize_content
 
 st.set_page_config(page_title="VibeGEO", layout="wide")
 
+
+
 def _render_metrics(result):
     """渲染 GEO 指标看板"""
     st.markdown("---")
